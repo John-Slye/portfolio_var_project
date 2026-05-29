@@ -8,7 +8,7 @@ Extreme Value Theory for the deep tail.
 Built end-to-end from scratch (no pre-built VaR libraries) on 12 years of
 daily data covering the 2020 COVID crash, the 2022 rate shock, and earlier
 crises via extended history. The goal: not just compute VaR, but **validate**
-it — the difference between an analytics exercise and a real risk project.
+it, the difference between an analytics exercise and a real risk project.
 
 ---
 
@@ -19,12 +19,12 @@ equity, long Treasuries, high-yield credit, gold, oil, USD) over 2014-01-03
 to 2026-05-28 (3,118 daily observations, equal weights):
 
 **1. The fat-tail problem is real and measurable.** Parametric-Normal 99%
-1-day VaR is **1.54%**; empirical Historical VaR is **1.80%** — a 17%
+1-day VaR is **1.54%**; empirical Historical VaR is **1.80%**, a 17%
 underestimate. Student-t and EVT methods close the gap.
 
 **2. Out-of-sample backtests reveal which models are usable.** Plain
 Historical, Parametric-Normal, and Monte-Carlo-Normal all fail
-Christoffersen-independence at 95% (p ≈ 0.000) — they have the right
+Christoffersen-independence at 95% (p ≈ 0.000), they have the right
 exceedance *rate* but cluster violations in the 2020 and 2022 stress windows.
 At 99%, Parametric-Normal exceeds its threshold **2.41% of days** vs the
 nominal 1.00%, failing Kupiec hard. **FHS with GARCH(1,1) is the only model
@@ -42,18 +42,18 @@ portfolio re-priced under historical crises:
 | 2022 Rate Shock | 124 | 9.2% |
 
 Both crises produced ~23% drawdowns, but COVID got there at 47% annualized
-vol over a single quarter — 1.5× the GFC's pace.
+vol over a single quarter, 1.5× the GFC's pace.
 
 **4. Risk decomposition shows equal weight ≠ equal risk.** USO (oil) at 11%
 weight carries **23.8% of total VaR**. The five equity-like assets (SPY,
 QQQ, IWM, EFA, USO) together = 55% of weight and 90% of risk. TLT and UUP
-have **negative marginal VaR** — adding more of either *reduces* portfolio
+have **negative marginal VaR**, adding more of either *reduces* portfolio
 risk. This is the input to risk-parity construction.
 
 **5. EVT extends the analysis to events not in the sample.** A Generalized
 Pareto fit to the 5%-worst losses gives **ξ = 0.31** (heavy tail confirmed).
 Implied 99.9% VaR = **4.14%**, more than **2× the Parametric-Normal estimate
-of ~2.05%** at the same confidence — a structural quantification of the
+of ~2.05%** at the same confidence, a structural quantification of the
 Gaussian model's tail underestimate.
 
 ---
@@ -65,7 +65,7 @@ Gaussian model's tail underestimate.
 | `figures/01_returns_histogram_var.png` | Empirical return distribution with overlaid 95% VaR lines from each method. Visual confirmation that the left tail is fatter than Gaussian. |
 | `figures/02_var_method_comparison.png` | Side-by-side 95% and 99% VaR bars across five methods. The 99% panel shows the fat-tail divergence. |
 | `figures/03_garch_conditional_vol.png` | Conditional volatility series from GARCH(1,1). Massive spikes during 2020 and 2022. |
-| `figures/04_fhs_vs_hist_var.png` | **The money shot:** rolling 95% VaR — plain Historical vs Filtered Historical. FHS reacts immediately when vol spikes; plain HS lags by months. |
+| `figures/04_fhs_vs_hist_var.png` | **The money shot:** rolling 95% VaR, plain Historical vs Filtered Historical. FHS reacts immediately when vol spikes; plain HS lags by months. |
 | `figures/05_fhs_vs_hist_covid_zoom.png` | Same comparison zoomed to Feb–Jun 2020. |
 | `figures/06_backtest_95_violations.png` | Rolling 95% VaR per method with violation markers. Plain methods cluster failures around COVID. |
 | `figures/07_backtest_99_violations.png` | Same at 99%. Normal methods over-exceed by 2.4×. |
@@ -73,7 +73,7 @@ Gaussian model's tail underestimate.
 | `figures/09_worst_scenario_contributions.png` | Per-asset contribution to the 2020 COVID loss. TLT and UUP saved ~2 percentage points. |
 | `figures/10_component_var.png` | Equal weight vs % VaR contribution bars. USO is 11% weight, 24% of risk. |
 | `figures/11_mean_excess.png` | EVT mean-excess function for threshold selection. |
-| `figures/12_evt_vs_others.png` | VaR by confidence level — EVT vs Historical vs Normal. EVT extrapolates the deep tail. |
+| `figures/12_evt_vs_others.png` | VaR by confidence level, EVT vs Historical vs Normal. EVT extrapolates the deep tail. |
 
 ---
 
@@ -133,7 +133,7 @@ python -m portfolio_var.data         # downloads + caches prices (~30s, once)
 jupyter lab notebooks/01_walkthrough.ipynb
 ```
 
-Then "Run All" — the full notebook executes in ~2 minutes.
+Then "Run All", the full notebook executes in ~2 minutes.
 
 ---
 
@@ -143,7 +143,7 @@ Then "Run All" — the full notebook executes in ~2 minutes.
 portfolio_var_project/
 ├── src/portfolio_var/
 │   ├── data.py             # download + cache + returns computation
-│   ├── var_methods.py      # Historical, Parametric, MC, FHS — VaR & ES
+│   ├── var_methods.py      # Historical, Parametric, MC, FHS, VaR & ES
 │   ├── backtesting.py      # Kupiec, Christoffersen, Basel; rolling VaR
 │   ├── stress.py           # historical scenario re-pricing
 │   ├── decomposition.py    # Component / Marginal VaR (Euler)

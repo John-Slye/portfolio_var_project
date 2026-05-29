@@ -80,26 +80,26 @@ story += [
     H1("Executive Summary"),
     P("This project builds a Python framework for measuring market risk on a "
       "multi-asset portfolio (US, international, Treasuries, credit, commodities, FX) "
-      "using <b>seven Value-at-Risk methodologies</b>, statistically validates them "
+      "using seven Value-at-Risk methodologies, statistically validates them "
       "via formal backtests, evaluates losses under historical stress scenarios, "
       "decomposes total portfolio risk into per-asset contributions, and extrapolates "
       "the deep tail with Extreme Value Theory."),
-    P("<b>Five headline findings</b> from the 2014–2026 sample (3,118 daily observations):"),
+    P("Five headline findings from the 2014–2026 sample (3,118 daily observations):"),
     P("1. <b>Fat tails are real and measurable.</b> Parametric-Normal 99% VaR underestimates "
       "the empirical 99% VaR by 17% (1.54% vs 1.80%). Student-t and EVT close the gap."),
     P("2. <b>Only one model passes backtesting.</b> Plain Historical, Parametric-Normal, "
       "and Monte-Carlo-Normal all fail Christoffersen-independence at 95% (p ≈ 0.000). "
-      "Parametric-Normal exceeds its 99% threshold at <b>2.41%</b> of days vs. the nominal "
-      "1.00%, failing Kupiec hard. <b>FHS with GARCH(1,1) is the only method to pass "
-      "both unconditional and conditional coverage at both confidence levels.</b>"),
+      "Parametric-Normal exceeds its 99% threshold at 2.41% of days vs. the nominal "
+      "1.00%, failing Kupiec hard. FHS with GARCH(1,1) is the only method to pass "
+      "both unconditional and conditional coverage at both confidence levels."),
     P("3. <b>2020 COVID and 2008 GFC produced comparable drawdowns</b> (23.4% vs 22.8%), "
-      "but COVID delivered the loss in 24 days at 47% annualized vol — 1.5× the pace of the GFC."),
+      "but COVID delivered the loss in 24 days at 47% annualized vol, 1.5× the pace of the GFC."),
     P("4. <b>Equal weight does not mean equal risk.</b> Five equity-like assets carry "
-      "90% of portfolio VaR for 55% of weight. TLT and UUP have negative marginal VaR — "
-      "<b>they reduce</b> portfolio risk."),
+      "90% of portfolio VaR for 55% of weight. TLT and UUP have negative marginal VaR, "
+      "they reduce portfolio risk."),
     P("5. <b>EVT exposes the structural Gaussian underestimate at the deep tail.</b> "
-      "ξ = 0.31 (heavy tail confirmed). EVT 99.9% VaR = 4.14% vs Parametric-Normal at ~2.05% — "
-      "<b>more than 2× higher</b>. This is the model failure that pre-2008 capital frameworks suffered."),
+      "ξ = 0.31 (heavy tail confirmed). EVT 99.9% VaR = 4.14% vs Parametric-Normal at ~2.05%, "
+      "more than 2× higher. This is the model failure that pre-2008 capital frameworks suffered."),
     PageBreak(),
 ]
 
@@ -110,7 +110,7 @@ story += [
     P("Nine ETFs spanning US large/mid/small-cap (SPY, QQQ, IWM), international equity "
       "(EFA), long-duration Treasuries (TLT), high-yield credit (HYG), gold (GLD), oil (USO) "
       "and USD (UUP). Equal weights for the headline analysis (extensible)."),
-    H2("Methods implemented (all from scratch — no pre-built VaR libraries)"),
+    H2("Methods implemented (all from scratch, no pre-built VaR libraries)"),
     tbl([
         ["Family", "Method", "Tail model"],
         ["Historical",       "Historical Simulation", "Empirical (sorted history)"],
@@ -123,10 +123,10 @@ story += [
     ], col_widths=[1.0*inch, 2.5*inch, 2.7*inch]),
     H2("Backtests"),
     P("Kupiec POF (unconditional coverage), Christoffersen independence + conditional "
-      "coverage, Basel traffic-light. <b>Strictly out-of-sample</b>: rolling 500-day "
+      "coverage, Basel traffic-light. Strictly out-of-sample: rolling 500-day "
       "windows (1,000 for FHS), refitting GARCH every 60 trading days and updating σ via "
       "the GARCH recursion between refits. No look-ahead."),
-    H1("Phase 1 — VaR &amp; ES across methods"),
+    H1("Phase 1, VaR &amp; ES across methods"),
     tbl([
         ["Method",                  "95% VaR", "95% ES", "99% VaR", "99% ES"],
         ["Historical",              "0.99%",   "1.59%",  "1.80%",   "2.84%"],
@@ -137,27 +137,27 @@ story += [
     ], col_widths=[2.2*inch, 0.9*inch, 0.9*inch, 0.9*inch, 0.9*inch]),
     Spacer(1, 6),
     P("<b>The fat-tail problem at 99%.</b> Parametric-Normal underestimates Historical by "
-      "17% (1.54% vs 1.80%). MC-Normal converges to Parametric-Normal as expected — they "
+      "17% (1.54% vs 1.80%). MC-Normal converges to Parametric-Normal as expected, they "
       "are the same model. The Student-t methods recover most of the gap because the t "
       "distribution has an extra parameter (degrees of freedom) that fits tail thickness. "
-      "<b>ES/VaR ratio is a direct fat-tail diagnostic:</b> Historical at 99% gives 1.58, "
-      "Parametric-Normal gives 1.15 — the Normal tail decays so fast that conditional-on-"
+      "ES/VaR ratio is a direct fat-tail diagnostic: Historical at 99% gives 1.58, "
+      "Parametric-Normal gives 1.15, the Normal tail decays so fast that conditional-on-"
       "exceedance is barely worse than the threshold."),
     PageBreak(),
 ]
 
 # ---------- Page 3: Charts of Phase 1 + intro to Phase 2 ----------
 story += [
-    H1("Phase 1 — Visual evidence"),
-    *fig("01_returns_histogram_var.png", caption="Figure 1 — Empirical return distribution with 95% VaR thresholds overlaid. Left tail is visibly fatter than the fitted Normal density (dashed)."),
-    *fig("02_var_method_comparison.png", caption="Figure 2 — VaR by method at 95% and 99%. The 99% panel shows the divergence between Normal-based methods (Parametric, MC-Normal) and the tail-aware methods (Historical, Student-t)."),
+    H1("Phase 1, Visual evidence"),
+    *fig("01_returns_histogram_var.png", caption="Figure 1, Empirical return distribution with 95% VaR thresholds overlaid. Left tail is visibly fatter than the fitted Normal density (dashed)."),
+    *fig("02_var_method_comparison.png", caption="Figure 2, VaR by method at 95% and 99%. The 99% panel shows the divergence between Normal-based methods (Parametric, MC-Normal) and the tail-aware methods (Historical, Student-t)."),
     PageBreak(),
 ]
 
-# ---------- Page 4: Phase 2 — FHS the money shot ----------
+# ---------- Page 4: Phase 2, FHS the money shot ----------
 story += [
-    H1("Phase 2 — Filtered Historical Simulation"),
-    P("Returns are not i.i.d. — vol clusters. FHS fixes this by (1) fitting a GARCH(1,1) "
+    H1("Phase 2, Filtered Historical Simulation"),
+    P("Returns are not i.i.d., vol clusters. FHS fixes this by (1) fitting a GARCH(1,1) "
       "to the portfolio return series to estimate conditional vol σ<sub>t</sub>, (2) "
       "standardizing each return by its own σ<sub>t</sub> to get approximately i.i.d. "
       "residuals z<sub>t</sub>, and (3) resampling those residuals and rescaling by "
@@ -172,16 +172,16 @@ story += [
         ["α + β",         "0.9782",      "Textbook (0.97–0.99 range)"],
     ], col_widths=[1.4*inch, 1.3*inch, 3.4*inch]),
     Spacer(1, 4),
-    P("Implied vol-shock half-life: ln(0.5) / ln(0.978) ≈ <b>31 business days</b>. After "
+    P("Implied vol-shock half-life: ln(0.5) / ln(0.978) ≈ 31 business days. After "
       "a March-2020-sized move, conditional vol decays halfway back to baseline in about a "
-      "month — exactly the persistence visible in Figure 3."),
-    *fig("04_fhs_vs_hist_var.png", width=6.4, caption="Figure 3 — The headline chart of the project. Plain Historical VaR (red) lags by months because it averages over a 500-day window; FHS (blue) reacts the next day, because σ<sub>t</sub> spikes immediately when markets move."),
+      "month, exactly the persistence visible in Figure 3."),
+    *fig("04_fhs_vs_hist_var.png", width=6.4, caption="Figure 3, The headline chart of the project. Plain Historical VaR (red) lags by months because it averages over a 500-day window; FHS (blue) reacts the next day, because σ<sub>t</sub> spikes immediately when markets move."),
     PageBreak(),
 ]
 
-# ---------- Page 5: Phase 3 — Backtesting ----------
+# ---------- Page 5: Phase 3, Backtesting ----------
 story += [
-    H1("Phase 3 — Backtesting"),
+    H1("Phase 3, Backtesting"),
     P("Computing VaR is the easy part. Showing the model's predictions match its claim is "
       "the credibility test. Below are out-of-sample backtest results for all four primary "
       "methods at both confidence levels (n ≈ 2,118 – 2,618 prediction days per method, "
@@ -201,17 +201,17 @@ story += [
     Spacer(1, 6),
     P("<b>FHS is the only method to pass both Kupiec and Christoffersen at both confidence "
       "levels.</b> The three unconditional methods all pass Kupiec at 95% (right exceedance "
-      "rate) but fail Christoffersen-independence with p ≈ 0.000 — their violations cluster "
+      "rate) but fail Christoffersen-independence with p ≈ 0.000, their violations cluster "
       "in the 2020 and 2022 stress windows. At 99%, Parametric and Monte Carlo Normal "
       "exceed their threshold at 2.4× the nominal rate, failing Kupiec catastrophically. "
       "This is the empirical case for conditional models in production risk."),
-    *fig("07_backtest_99_violations.png", width=6.4, caption="Figure 4 — 99% rolling VaR with violation markers (red dots). The Normal-based methods (top-right, bottom-left) show roughly 2× the expected number of exceedances; FHS (bottom-right) is closest to the nominal rate and the most evenly distributed in time."),
+    *fig("07_backtest_99_violations.png", width=6.4, caption="Figure 4, 99% rolling VaR with violation markers (red dots). The Normal-based methods (top-right, bottom-left) show roughly 2× the expected number of exceedances; FHS (bottom-right) is closest to the nominal rate and the most evenly distributed in time."),
     PageBreak(),
 ]
 
-# ---------- Page 6: Phase 4 — Stress + Decomp ----------
+# ---------- Page 6: Phase 4, Stress + Decomp ----------
 story += [
-    H1("Phase 4 — Stress testing &amp; Risk decomposition"),
+    H1("Phase 4, Stress testing &amp; Risk decomposition"),
     H2("Current portfolio re-priced under historical crises"),
     tbl([
         ["Scenario",                                 "Days", "Cumulative loss", "Worst day", "Ann. vol"],
@@ -223,30 +223,30 @@ story += [
     ], col_widths=[3.0*inch, 0.55*inch, 1.2*inch, 0.85*inch, 0.85*inch]),
     Spacer(1, 4),
     P("Both 2008 and 2020 produced ~23% cumulative drawdowns on the current portfolio, "
-      "but COVID delivered the loss in <b>24 days</b> at 47% annualized vol vs 63 days "
+      "but COVID delivered the loss in 24 days at 47% annualized vol vs 63 days "
       "for the GFC. The 2022 rate shock was slower and broader (124 days), hitting bonds "
       "<i>and</i> stocks simultaneously."),
-    H2("COVID drill-down — flight-to-quality in action"),
+    H2("COVID drill-down, flight-to-quality in action"),
     P("Per-asset contribution to the 23.4% cumulative COVID loss: oil (USO) fell 55%; "
-      "small-caps (IWM) fell 40%; SPY fell 33%. <b>TLT and UUP rallied</b> — Treasuries "
-      "+14% and USD +4% — adding back ~2 percentage points to the portfolio return. "
+      "small-caps (IWM) fell 40%; SPY fell 33%. TLT and UUP rallied, Treasuries "
+      "+14% and USD +4%, adding back ~2 percentage points to the portfolio return. "
       "Without those two assets the loss would have been ~25.4% instead of 23.4%. "
       "This is the resume-grade evidence for multi-asset diversification."),
-    *fig("09_worst_scenario_contributions.png", width=6.0, caption="Figure 5 — Per-asset contribution to the 2020 COVID drawdown. TLT and UUP are the only positive contributors."),
+    *fig("09_worst_scenario_contributions.png", width=6.0, caption="Figure 5, Per-asset contribution to the 2020 COVID drawdown. TLT and UUP are the only positive contributors."),
     H2("Component VaR (Euler decomposition)"),
-    P("Equal weight does not mean equal risk. USO at 11.1% weight contributes <b>23.8% of "
-      "total VaR</b> — oil is the single riskiest holding due to high standalone vol and "
+    P("Equal weight does not mean equal risk. USO at 11.1% weight contributes 23.8% of "
+      "total VaR, oil is the single riskiest holding due to high standalone vol and "
       "stress-period correlation. The five equity-like assets (SPY, QQQ, IWM, EFA, USO) "
-      "together carry <b>90% of risk for 55% of weight</b>. TLT and UUP have <b>negative</b> "
-      "marginal VaR — adding more of either reduces portfolio risk. The Euler decomposition "
+      "together carry 90% of risk for 55% of weight. TLT and UUP have negative "
+      "marginal VaR, adding more of either reduces portfolio risk. The Euler decomposition "
       "closes exactly: Σ Component VaR = portfolio VaR (1.1109%, zero relative error)."),
-    *fig("10_component_var.png", width=6.4, caption="Figure 6 — Weight vs % of total VaR contribution by asset. Equal weights produce unequal risk shares."),
+    *fig("10_component_var.png", width=6.4, caption="Figure 6, Weight vs % of total VaR contribution by asset. Equal weights produce unequal risk shares."),
     PageBreak(),
 ]
 
-# ---------- Page 7: Phase 5 — EVT ----------
+# ---------- Page 7: Phase 5, EVT ----------
 story += [
-    H1("Phase 5 — Extreme Value Theory (POT-GPD)"),
+    H1("Phase 5, Extreme Value Theory (POT-GPD)"),
     P("Standard methods cannot extrapolate beyond the sample (Historical) or extrapolate "
       "with the wrong tail (Normal). EVT models the tail itself: Peaks-Over-Threshold "
       "with a Generalized Pareto Distribution fit to losses above the 95th percentile."),
@@ -261,20 +261,20 @@ story += [
     H2("EVT VaR &amp; ES, compared to Historical and Parametric Normal"),
     tbl([
         ["Confidence", "EVT VaR", "EVT ES",  "Historical", "Param Normal", "EVT vs Normal"],
-        ["95.0%",      "0.99%",   "1.59%",   "0.99%",       "1.08%",        "—"],
+        ["95.0%",      "0.99%",   "1.59%",   "0.99%",       "1.08%",        " - "],
         ["99.0%",      "1.85%",   "2.84%",   "1.80%",       "1.54%",        "+20%"],
         ["99.5%",      "2.37%",   "3.60%",   "n/a*",        "~1.77%",       "+34%"],
         ["99.9%",      "4.14%",   "6.18%",   "n/a*",        "~2.05%",       "+102%"],
     ], col_widths=[1.0*inch, 0.85*inch, 0.85*inch, 1.05*inch, 1.15*inch, 1.2*inch]),
     Spacer(1, 6),
     P("<b>The 99.9% number is the project's deepest finding.</b> Parametric Normal "
-      "estimates a 1-in-1000-day loss at ~2.05%. EVT estimates <b>4.14%</b> — more than "
+      "estimates a 1-in-1000-day loss at ~2.05%. EVT estimates 4.14%, more than "
       "double. This is the structural risk-underestimate of Gaussian models at extreme "
       "confidence levels, and the empirical case for using EVT at the deep tail. "
-      "ES at 99.9% = <b>6.18%</b>, almost exactly the worst observed day in the 12-year "
-      "sample (6.99% on 2020-03-16) — EVT treats events of that magnitude as the average "
+      "ES at 99.9% = 6.18%, almost exactly the worst observed day in the 12-year "
+      "sample (6.99% on 2020-03-16), EVT treats events of that magnitude as the average "
       "severity of a 1-in-1000-day stress, not anomalies."),
-    *fig("12_evt_vs_others.png", width=6.4, caption="Figure 7 — VaR by confidence level. EVT (red) extrapolates past the empirical maximum; Parametric Normal (orange) systematically under-shoots in the deep tail."),
+    *fig("12_evt_vs_others.png", width=6.4, caption="Figure 7, VaR by confidence level. EVT (red) extrapolates past the empirical maximum; Parametric Normal (orange) systematically under-shoots in the deep tail."),
     PageBreak(),
 ]
 
@@ -283,7 +283,7 @@ story += [
     H1("Conclusion"),
     P("This framework demonstrates the full lifecycle of market-risk model development: "
       "implementation, validation, stress testing, decomposition, and tail extrapolation. "
-      "The key findings are mutually reinforcing — Phase 1 shows the fat-tail problem in the "
+      "The key findings are mutually reinforcing, Phase 1 shows the fat-tail problem in the "
       "static numbers, Phase 2 introduces the conditional model that addresses it, Phase 3 "
       "proves through formal backtesting that the conditional model is the only one that "
       "passes, Phase 4 quantifies the diversification value of the multi-asset structure, "
