@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "portfolio-var"
+version = "0.1.0"
+description = "Multi-asset Value at Risk & stress testing framework"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "John Slye" }]
+
+[tool.setuptools.packages.find]
+where = ["src"]
